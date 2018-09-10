@@ -1,4 +1,17 @@
 
+@import './weui.scss';
+@import './asset/font/iconfont.scss';
+
+// top search
+.topPart{
+  background-color: #E3212C;
+  flex:1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// old UI
+
 .container {
   min-height: 1200px;
   display: flex;

@@ -24,6 +24,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
+      'pages/find/find',
       'pages/discovery/discovery',
       'pages/more/more',
       'pages/answer/answer',
@@ -31,32 +32,33 @@ class App extends Component {
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#0068C4',
-      navigationBarTitleText: 'taro知乎',
+      navigationBarBackgroundColor: "#E3212C",
+      navigationBarTitleText: '美惠',
       navigationBarTextStyle: 'white',
       enablePullDownRefresh: true
     },
+    mainColor:"#E3212C",
     tabBar: {
       color: "#626567",
-      selectedColor: "#2A8CE5",
+      selectedColor: "#E3212C",
       backgroundColor: "#FBFBFB",
       borderStyle: "white",
       list: [{
         pagePath: "pages/index/index",
-        text: "首页",
-        iconPath: "./asset/images/index.png",
-        selectedIconPath: "./asset/images/index_focus.png"
+        text: "附近",
+        iconPath: "./asset/imgs/1.png",
+        selectedIconPath: "./asset/imgs/1f.png"
       }, {
         pagePath: "pages/discovery/discovery",
-        text: "发现",
-        iconPath: "./asset/images/discovery.png",
-        selectedIconPath: "./asset/images/discovery_focus.png"
+        text: "电商",
+        iconPath: "./asset/imgs/2.png",
+        selectedIconPath: "./asset/imgs/2f.png"
       },
         {
           pagePath: "pages/more/more",
           text: "我的",
-          iconPath: "./asset/images/burger.png",
-          selectedIconPath: "./asset/images/burger_focus.png"
+          iconPath: "./asset/imgs/3.png",
+          selectedIconPath: "./asset/imgs/3f.png"
         }]
     }
   }
