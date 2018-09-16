@@ -1,11 +1,12 @@
+@import '../../var.scss';
 .user {
   width: 725px;
   background: #ffffff;
   padding: 30px 25px 30px 0;
   margin: 15rpx 0 0 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid $lineColor;
   border-bottom: 1px solid #dcdcdc;
-  box-shadow: 0 2px 5px #eeeeee;
+  box-shadow: 0 2px 5px $lineColor;
 
   .userinfo-avatar{
     flex: 1;

@@ -1,7 +1,7 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text, Navigator } from '@tarojs/components'
+import { View, Text, Navigator } from '@tarojs/components'
 import './searchBar.scss'
-import {mainColor} from '../../constants'
+import { mainColor } from '../../constants'
 
 export default class SearchInput extends Component {
     static options = {
@@ -42,7 +42,6 @@ export default class SearchInput extends Component {
             });
         }
     }
-    com
     render() {
         const { placeholder = "搜索", hideBtn } = this.props
         return (

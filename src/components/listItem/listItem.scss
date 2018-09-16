@@ -1,0 +1,47 @@
+@import '../../var.scss';
+
+.l-i-outer{
+  padding: 0 10px;
+}
+.l-i-box{
+  padding:10px 0;
+  border-bottom: 1px solid $lineColor;
+}
+.l-i-cover{
+  height:50px;
+  width:50px;
+  border-radius: 25px;
+  overflow: hidden;
+}
+.l-i-content{
+  margin-left: 10px;
+  flex:1
+}
+.l-i-title{
+  height:50px;
+}
+.tags{
+  margin-top: 6px;
+}
+.sales{padding:3px 0;margin-top:2px;padding-right: 20px;position: relative;border-top: 1px dotted $lineColor;}
+.sale-item{padding:5px 0;padding-right: 5px;line-height: 1;}
+.sale-icon{
+  color: #FFFFFF;
+  font-size: 10px;
+  line-height: 1;
+  padding:3px;
+  margin-right: 5px;
+}
+.sale-icon.blue{background-color: #487EE8}
+.sale-icon.red{background-color: #E51C23}
+.sale-icon.orange{background-color: #EB7C15}
+
+.more-r{
+  position: absolute;
+  top:0;
+  right:0;
+  padding: 3px 10px 10px 10px;
+}
+.l-i-b-more{
+  border-top: 1px solid $lineColor;
+}

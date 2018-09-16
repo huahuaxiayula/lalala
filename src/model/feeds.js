@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import action from "../utils/action";
-import request from "../utils/request";
+import {getShops} from "../service/feeds"
 import delay from "../utils/delay";
 
 export default {
@@ -27,17 +27,17 @@ export default {
       }
     },
     * load({payload}, {all, call, put}) {
-      let {data} = yield call(request, {
-        url: 'https://easy-mock.com/mock/5b21d97f6b88957fa8a502f2/example/feed'
-      });
-      yield call(delay, 2000);//增加延迟测试效果
-      yield put(action("save", {list: data}))
+      let {result,shops,resultMessage} = yield call(getShops);
+      // let {shops,code} = yield call(s.postRequest, {
+      //   url: 'https://gateway.imeihui.top/home/shoplist'
+      // });
+      // console.log('loaddddd:',shops)
+      yield call(delay, 1000);//增加延迟测试效果
+      yield put(action("save", {shops,list:[]}))
     },
     * loadMore({payload}, {all, call, put}) {
-      let {data} = yield call(request, {
-        url: 'https://easy-mock.com/mock/5b21d97f6b88957fa8a502f2/example/feed'
-      });
-      yield call(delay, 2000);//增加延迟测试效果
+      let {data} = yield call(getShops);
+      yield call(delay, 1000);//增加延迟测试效果
       yield put(action("saveMore", data))
     },
   },

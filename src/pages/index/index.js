@@ -1,89 +1,107 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Image, Icon, Label } from '@tarojs/components'
 import './index.scss'
-import Feed from '../../components/feed/feed'
-import searchPng from '../../asset/images/search.png'
-import lightingPng from '../../asset/images/lighting.png'
-import { create } from 'dva-core';
 import { connect } from '@tarojs/redux'
 import action from '../../utils/action'
-import SearchBar from '../../components/searchBar/searchBar'
+import ListItem from '../../components/listItem/listItem'
+import { SwiperBanner, SearchBar, SwiperNews, Side, TagTabs, Fixed } from '../../components/index'
 
-@connect(({ feeds, loading }) => ({
-	...feeds,
-	isLoad: loading.effects["feeds/load"],
-	isLoadMore: loading.effects["feeds/loadMore"],
-}))
-export default class Index extends Component {
+class IndexScreen extends Component {
 	config = {
-		navigationBarTitleText: '首页',
 		enablePullDownRefresh: true,
 		backgroundTextStyle: "dark",
 	};
 
 	constructor() {
 		super(...arguments);
+		this.state = {
+			menuFixed: ""
+		}
 	}
 	componentDidMount = () => {
-		this.props.dispatch(action("feeds/load"));
+		this.props.dispatch({ type: "shops/load", payload: {} });
+		this.fixedSearch && this.initFixed(this.fixedSearch, "#fixedTop")
+		this.fixed && this.initFixed(this.fixed, "#fixedTag")
 	};
 
+	initFixed = (fd, id) => {
+		let query = Taro.createSelectorQuery()
+		query.select(id).boundingClientRect(fd.init).exec()
+	}
+	onPageScroll = (e) => {
+		this.fixed && this.fixed.onPageScroll(e)
+		this.fixedSearch && this.fixedSearch.onPageScroll(e)
+		if (e.scrollTop > 0) {
+			if (!this.state.menuFixed) {
+				this.setState({ menuFixed: 'fixed' })
+			}
+		} else {
+			if (this.state.menuFixed) {
+				this.setState({ menuFixed: "" })
+			}
+		}
+	}
+
 	onPullDownRefresh = () => {
-		this.props.dispatch(action("feeds/load"));
+		this.props.dispatch({
+			type: "shops/load",
+			payload: {},
+			callback: v => Taro.stopPullDownRefresh()
+		});
 	};
 
 	onReachBottom = () => {
-		this.props.dispatch(action("feeds/loadMore"));
+		console.log('loadingBtootom')
+		this.props.dispatch(action("shops/loadMore"));
 	};
 
 	updateList = () => {
-		this.props.dispatch(action("feeds/search", true));
+		this.props.dispatch(action("shops/search", true));
 	};
-	onSearchFoucs = () =>{
+	onSearchFoucs = () => {
 		console.log('onclicka....')
 	}
 	render() {
-		const { list = [], isLoad, isLoadMore } = this.props;
+		const { shops = [], isLoad, isLoadMore } = this.props;
+		console.log(shops)
 		return (
-			<View>
-				<View className="topPart">
-					<SearchBar name="name" placeholder="输入店铺名、分类、商圈" hideBtn={1} onClick={this.onSearchFoucs.bind(this)}/>
-				</View>
-				
-<View className="weui-panel">
-            <View className="weui-panel__hd"><Text>文字列表附来源</Text></View>
-            <View className="weui-panel__bd">
-                <View className="weui-media-box weui-media-box_text">
-                    <View className="weui-media-box__title"><Text>标题一</Text></View>
-                    <View className="weui-media-box__desc"><Text>由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</Text></View>
-                    <View className="weui-media-box__info">
-                        <View className="weui-media-box__info__meta"><Text>文字来源</Text></View>
-                        <View className="weui-media-box__info__meta"><Text>时间</Text></View>
-                        <View className="weui-media-box__info__meta weui-media-box__info__meta_extra"><Text>其它信息</Text></View>
-                    </View>
-                </View>
-            </View>
-        </View>
-
-				<View className='container'>
+			<View className="main">
+				<Fixed ref={ref => this.fixedSearch = ref} id="fixedTop">
+					<View className="topPart">
+						<View className="f-h-c-b addrs pd-h">
+							<View className="f-h-c">
+								<Text className="icon iconfont cfff mr5">&#xe617;</Text>
+								<Text className="icon iconfont cfff mr5 font-bold">东方金融广场</Text>
+								<Text className="icon iconfont cfff">&#xe65e;</Text>
+							</View>
+							<View className="lh-1"><Text className="icon iconfont cfff map-icon">&#xe61d;</Text></View>
+						</View>
+						<SearchBar name="name" placeholder="输入店铺名、分类、商圈" hideBtn={1} onClick={this.onSearchFoucs.bind(this)} />
+					</View>
+				</Fixed>
+				<SwiperNews />
+				<SwiperBanner />
+				<Side />
+				<Fixed ref={ref => this.fixed = ref} top={82} id="fixedTag">
+					<TagTabs />
+				</Fixed>
+				<View className="nav-bottom-space">
 					{
-						list.length ?
-							list.map(item => {
-								return <Feed
-									key={item}
-									feed_source_img={item.feed_source_img}
-									feed_source_name={item.feed_source_name}
-									feed_source_txt={item.feed_source_txt}
-									question={item.question}
-									answer_ctnt={item.answer_ctnt}
-									good_num={item.good_num}
-									comment_num={item.comment_num}
+						shops.length ?
+							shops.map((item, i) => {
+								return <ListItem
+									key={i}
+									name={item.name}
+									imageUrl={item.imageUrl}
+									distance={item.distance}
+									tabs={item.tabs}
+									sales={item.sales}
 								/>
 							}) :
-							isLoad ? <View>加载中...</View> : <View>没有数据</View>
+							isLoad ? <View className="f-c-c mt5"><Text className="ft14 c999">加载中...</Text></View> : <View className="f-c-c"><Text className="ft14 c999">加载完毕!</Text></View>
 					}
 					{
-						isLoadMore && <View>加载中...</View>
+						isLoadMore && <View className="f-c-c mt5"><Text className="ft14 c999">加载中...</Text></View>
 					}
 				</View>
 			</View>
@@ -91,3 +109,9 @@ export default class Index extends Component {
 	}
 }
 
+// 链接 model
+export default connect(({ shops, loading }) => ({
+	...shops,
+	isLoad: loading.effects["shops/load"],
+	isLoadMore: loading.effects["shops/loadMore"],
+}))(IndexScreen);

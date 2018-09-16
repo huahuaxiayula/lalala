@@ -8,7 +8,6 @@ export default class Feed extends Component {
     Taro.navigateTo({url:url})
   }
   render() {
-    console.log("this.props",this.props)
     return (
       <View className='feed-item'>
         <View className='feed-source'>

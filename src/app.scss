@@ -1,19 +1,164 @@
 
 @import './weui.scss';
 @import './asset/font/iconfont.scss';
-
+@import './var.scss';
 // top search
+page{
+  height:100%;
+}
+.main{
+  height:100%;
+  // background-color: red;
+  // overflow: hidden;
+}
+.pd-h{
+  padding: 0 10px;
+}
+.pd-b{
+  padding: 10px 0;
+}
+.mh_flex1{flex:1}
+.mh_flex,
+.f-c-s,
+.f-c-c,
+.f-c-e,
+.f-c-s-b,
+.f-c-c-b,
+.f-c-e-b,
+.f-h-s,
+.f-h-c,
+.f-h-e,
+.f-h-s-b,
+.f-h-c-b,
+.f-h-e-b,
+.f-v-s,
+.f-v-c,
+.f-v-e,
+.f-v-s-b,
+.f-v-c-b,
+.f-v-e-b{
+  display: flex;
+}
+.f-c-s,
+.f-c-c,
+.f-c-e,
+.f-c-s-b,
+.f-c-c-b,
+.f-c-e-b,
+.f-h-c,
+.f-h-c-b,
+.f-v-c,
+.f-v-c-b{
+  align-items: center;
+}
+.f-c-s,
+.f-c-s-b,
+.f-h-s,
+.f-h-s-b,
+.f-v-s,
+.f-v-s-b{
+  align-items: flex-start;
+}
+.f-c-e,
+.f-c-e-b,
+.f-h-e,
+.f-h-e-b,
+.f-v-e,
+.f-v-e-b{
+  align-items: flex-end;
+}
+.f-c-s-b,
+.f-c-c-b,
+.f-c-e-b,
+.f-h-s-b,
+.f-h-c-b,
+.f-h-e-b,
+.f-v-s-b,
+.f-v-c-b,
+.f-v-e-b{
+  justify-content:space-between;
+}
+.f-v-s,
+.f-v-c,
+.f-v-e,
+.f-v-s-b,
+.f-v-c-b,
+.f-v-e-b{
+  flex-direction: column;
+}
+.f-c-c,
+.f-c-c-b{
+  justify-content: center;
+}
+
+.elips-one{
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1; 
+}
+.c333{
+  color: #333333;
+}
+.c666{
+  color: #666666;
+}
+.c999{
+  color: #999999;
+}
+.cfff{
+  color: #FFFFFF;
+}
+.ft10{ font-size: 10px; }
+.ft11{ font-size: 11px; }
+.ft12{ font-size: 12px; }
+.ft13{ font-size: 13px; }
+.ft14{ font-size: 14px; }
+.ft15{ font-size: 15px; }
+.ft16{ font-size: 16px; }
+.ft18{ font-size: 18px; }
+.ft20{ font-size: 20px; }
+.font-bold{
+  font-weight: bold;
+}
+.mr5{ margin-right: 5px;}
+.mr10{margin-right: 10px;}
+.ml5{margin-left: 5px;}
+.ml10{margin-left: 10px;}
+.mt5{margin-top: 5px;}
+.mt10{margin-top: 10px;}
+
+.lh-1{
+  line-height: 1;
+}
+.img100{
+  width: 100%;
+  height: 100%;
+}
+.nav-bottom-space{padding-bottom: 50px;}
 .topPart{
-  background-color: #E3212C;
-  flex:1;
+  background-color: $mainColor;
   align-items: center;
   justify-content: space-between;
 }
-
+.scroll-box{
+  display: flex;
+  flex:1;
+  border: 1px solid red;
+  height:100%;
+  overflow: auto;
+}
+.fixed-top{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
 // old UI
 
 .container {
-  min-height: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,9 +181,9 @@
     padding: 30px 30px 20px;
     margin: 7px 0 6px 0;
     background: #ffffff;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    box-shadow: 0 2px 5px #eeeeee;
+    border-top: 1px solid $lineColor;
+    border-bottom: 1px solid  $lineColor;
+    box-shadow: 0 2px 5px  $lineColor;
 
     .answer-name {
         padding-left:10px;

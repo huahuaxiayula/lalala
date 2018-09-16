@@ -1,0 +1,26 @@
+@import '../../var.scss';
+
+.tt-n{
+  border-top: 1px solid $lineColor;;
+  border-bottom: 1px solid $lineColor;;
+  background-color: #FFFFFF;
+}
+.tt-n-box{
+  width: auto;
+  white-space: nowrap;
+  margin-bottom: -1px;
+}
+.tt-n-item{
+  display: inline-block;
+  height: 40px;
+  margin: 0 10px;
+  padding: 0 2px;
+}
+.tt-n-text{
+  font-size: 14px;
+  line-height: 40px;
+}
+.tt-n-active{
+  color: $mainColor;
+  border-bottom: 2px solid $mainColor
+}

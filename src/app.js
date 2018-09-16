@@ -24,20 +24,22 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
-      'pages/find/find',
-      'pages/discovery/discovery',
-      'pages/more/more',
-      'pages/answer/answer',
-      'pages/question/question'
+      'pages/webView/webView',
+      'pages/eShops/eShops',
+      'pages/userCenter/userCenter',
+      // 'pages/find/find',
+      // 'pages/discovery/discovery',
+      // 'pages/more/more',
+      // 'pages/answer/answer',
+      // 'pages/question/question'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: "#E3212C",
-      navigationBarTitleText: '美惠',
+      navigationBarTitleText: '每惠',
       navigationBarTextStyle: 'white',
-      enablePullDownRefresh: true
+      onReachBottomDistance:50
     },
-    mainColor:"#E3212C",
     tabBar: {
       color: "#626567",
       selectedColor: "#E3212C",
@@ -49,13 +51,13 @@ class App extends Component {
         iconPath: "./asset/imgs/1.png",
         selectedIconPath: "./asset/imgs/1f.png"
       }, {
-        pagePath: "pages/discovery/discovery",
+        pagePath: "pages/eShops/eShops",
         text: "电商",
         iconPath: "./asset/imgs/2.png",
         selectedIconPath: "./asset/imgs/2f.png"
       },
         {
-          pagePath: "pages/more/more",
+          pagePath: "pages/userCenter/userCenter",
           text: "我的",
           iconPath: "./asset/imgs/3.png",
           selectedIconPath: "./asset/imgs/3f.png"
